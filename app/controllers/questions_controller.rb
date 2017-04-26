@@ -1,6 +1,6 @@
 class QuestionsController < ApplicationController
   def index
-  	@questions = Question.all 
+  	@questions = Question.last(8)
   end
 
   def new
