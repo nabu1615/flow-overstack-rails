@@ -1,0 +1,16 @@
+<div class="container-fluid">
+	<h1>Lastest Questions</h1>
+	<ul  class="col-xs-12 col-sm-6">
+	<% @questions.each do |question| %>
+		<li> 
+			<span>Respuestas:<%= question.answers.count %> Votos:<%= question.votes.count %></span>
+			<p>
+			<%= link_to "#{question.title}", question_path(question) %>
+				
+			</p>
+			<span>created by: <%= question.user.email %></span><p></p>
+			<span>at: <%=question.date %></span> 	 
+		</li>
+	<% end %>
+	</ul>	
+</div>
