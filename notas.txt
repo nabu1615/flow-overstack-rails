@@ -1,0 +1,16 @@
+Estructura Pregunta
+
+Para cada pregunta se debe mostrar la siguiente información: número de votos, número de respuestas, la pregunta, el email del usuario que preguntó, y la fecha en que hizo la pregunta.
+
+Vista Pregunta
+
+El nombre de la pregunta.
+La descripción de la pregunta (debe soportar Markdown).
+El número de votos de la pregunta (se debe poder hacer click para votar y para anular votos).
+Los comentarios de la pregunta (si el usuario está autenticado se debe mostrar un espacio para agregar un comentario).
+Una lista de respuestas (debe soportar Markdown).
+Para cada respuesta se debe mostrar el número de votos (se debe poder hacer click para votar y para anular votos).
+Para cada respuesta se deben mostrar los comentarios (si el usuario está autenticado se debe mostrar un espacio para agregar un comentario).
+Si el usuario está autenticado se debe mostrar un formulario para agregar una respuesta
+
+---------------------------------------------
