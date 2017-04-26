@@ -1,15 +1,44 @@
-<div class="container-fluid">
-	<h1>Lastest Questions</h1>
-	<ul  class="col-xs-12 col-sm-6">
+<div class="invite-join">
+	<div class="container">
+		<div class="text">
+			<p>Únete a la comunidad de StackUp</p>
+			<span>Stack StackUp es una comunidad de 2 programadores como tú que se ayudan mutuamente. 
+			Únete a ellos, sólo te llevará un minuto:</span>
+			<div class="button-wrapper">
+				<%= link_to "Sign Up",  new_user_registration_path, class: 'btn btn-sign-up' %>
+			</div>
+		</div>	
+	</div>
+</div>
+
+<div class="container home">
+	<div class="wrapper-title">
+		<div class="row">
+			<h1 class="col-xs-12 col-sm-6">Latest Questions</h1>
+			<div class="button-wrapper col-sm-6">
+				<%= link_to "Ask Question", new_question_path, class: 'btn btn-primary'%>
+			</div>
+		</div>
+	</div>
+
+	<ul  class="col-xs-12 col-sm-8 home-questions">
 	<% @questions.each do |question| %>
-		<li> 
-			<span>Respuestas:<%= question.answers.count %> Votos:<%= question.votes.count %></span>
-			<p>
-			<%= link_to "#{question.title}", question_path(question) %>
-				
-			</p>
-			<span>created by: <%= question.user.email %></span><p></p>
-			<span>at: <%=question.date %></span> 	 
+		<li class="home-questions__item">
+			<div class="question-info col-xs-12 col-sm-3">
+				<%= link_to question_path(question), class: 'question-info__item question-info__answers' do %>
+					<strong><%= question.answers.count %></strong>
+					<span>Answers</span>
+				<% end %>
+				<div class="question-info__item question-info__votes">
+					<strong><%= question.votes.count %></strong>
+					<span>Votes</span>
+				</div>
+			</div>
+			<div class="question-details col-xs-12 col-sm-8">
+				<%= link_to "#{question.title}", question_path(question), class: 'home-questions__item__title' %>
+				<span class="question-details__user">created by: <%= question.user.email %></span>
+				<span class="question-details__date">at: <%=question.date %></span> 
+			</div>	 
 		</li>
 	<% end %>
 	</ul>	
