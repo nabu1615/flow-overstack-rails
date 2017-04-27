@@ -1,10 +1,23 @@
-<h4>Answer <%= answer_counter + 1 %></h4>
-<p><%= answer.votes.count %></p>
-<p><%= answer.body %></p>
-<p>Created by: <%= answer.user.email %></p>
-<p>Created at: <%= answer.created_at.strftime("%d/%m/%Y") %></p>
-<%= render answer.comments %>
+<div class="answer-detail">
+	<h4><%= answer_counter + 1 %> Answer</h4>
+	<p><%= answer.body %></p>
+	<div class="row question-user">
+		<div class="col-xs-12 col-sm-9 question-user__votes">
+			<%= link_to question_path(@question), class: 'question-info__item question-info__votes' do %>
+				<strong><%= answer.votes.count %></strong>
+				<span>Votes</span>
+			<% end %>
+		</div>
+		<div class="col-xs-12 col-sm-3 question-user__info">
+			<span><strong>User:</strong> <%= answer.user.email %></span>
+			<span><strong>At:</strong> <%= answer.created_at.strftime("%d/%m/%Y") %></span>
+		</div>
+	</div>
+	<div class="question-user__comments">
+		<%= render answer.comments %>
+	</div>
 	<% if user_signed_in? %>
-		<a class="show-comments btn btn-primary" href="">Add Comment</a>
+		<a class="show-comments" href="">Add Comment</a>
 	   <%= render partial: 'comments/form', locals: {commentable: answer}%>
 	<% end %>
+</div>
