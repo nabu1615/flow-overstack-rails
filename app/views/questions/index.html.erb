@@ -1,15 +1,17 @@
-<div class="invite-join">
-	<div class="container">
-		<div class="text">
-			<p>Únete a la comunidad de StackUp</p>
-			<span>Stack StackUp es una comunidad de 2 programadores como tú que se ayudan mutuamente. 
-			Únete a ellos, sólo te llevará un minuto:</span>
-			<div class="button-wrapper">
-				<%= link_to "Sign Up",  new_user_registration_path, class: 'btn btn-sign-up' %>
-			</div>
-		</div>	
+<% if !user_signed_in? %>
+	<div class="invite-join">
+		<div class="container">
+			<div class="text">
+				<p>Únete a la comunidad de StackUp</p>
+				<span>StackUp es una comunidad de 2 programadores como tú que se ayudan mutuamente. 
+				Únete a ellos, sólo te llevará un minuto:</span>
+				<div class="button-wrapper">
+					<%= link_to "Sign Up",  new_user_registration_path, class: 'btn btn-sign-up' %>
+				</div>
+			</div>	
+		</div>
 	</div>
-</div>
+<% end %>
 
 <div class="container home">
 	<div class="wrapper-title">
@@ -23,21 +25,22 @@
 
 	<ul  class="col-xs-12 col-sm-8 home-questions">
 	<% @questions.each do |question| %>
-		<li class="home-questions__item">
+		<li class="home-questions__item row">
 			<div class="question-info col-xs-12 col-sm-3">
 				<%= link_to question_path(question), class: 'question-info__item question-info__answers' do %>
 					<strong><%= question.answers.count %></strong>
 					<span>Answers</span>
 				<% end %>
-				<div class="question-info__item question-info__votes">
+
+				<%= link_to question_path(question), class: 'question-info__item question-info__votes' do %>
 					<strong><%= question.votes.count %></strong>
 					<span>Votes</span>
-				</div>
+				<% end %>
 			</div>
-			<div class="question-details col-xs-12 col-sm-8">
+			<div class="question-details col-xs-12 col-sm-9">
 				<%= link_to "#{question.title}", question_path(question), class: 'home-questions__item__title' %>
 				<span class="question-details__user">created by: <%= question.user.email %></span>
-				<span class="question-details__date">at: <%=question.date %></span> 
+				<span class="question-details__date">at: <%=question.created_at.strftime("%d/%m/%Y") %></span> 
 			</div>	 
 		</li>
 	<% end %>

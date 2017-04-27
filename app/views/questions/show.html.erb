@@ -1,2 +1,23 @@
-<h1>Questions#show</h1>
-<p>Find me in app/views/questions/show.html.erb</p>
+<div class="container question-detail">
+	<div class="button-wrapper text-right">
+	<%= link_to "Ask Question", new_question_path, class: 'btn btn-primary' %>
+	</div>
+	<h1><%= @question.title %></h1>
+	<p><%= @question.body %></p>
+	<p><%= @question.votes.count %></p>
+	<!-- <h3> Questions Comments</h3> -->
+	<%= render @question.comments %>
+	<p>created by: <%= @question.user.email %></p>
+	<p>created at: <%= @question.created_at.strftime("%d/%m/%Y") %></p>
+	<% if user_signed_in? %>
+		<a class="show-comments" href="">Add a Comment</a>
+		<%= render partial: 'comments/form', locals: {commentable: @question}%>
+	<% end %>
+	<div class="answers">
+	   <%= render @question.answers %>
+	<% if user_signed_in? %>
+	   <%= render partial: 'answers/form', locals: {question: @question}%>
+	<% end %>
+	</div>
+	
+</div>

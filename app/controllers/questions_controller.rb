@@ -4,11 +4,14 @@ class QuestionsController < ApplicationController
   end
 
   def new
+  	@question = Question.new
   end
 
   def create
+  	#@question = Question.create
   end
 
   def show
+  	@question = Question.find(params[:id])
   end
 end
