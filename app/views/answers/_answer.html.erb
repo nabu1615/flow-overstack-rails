@@ -1,0 +1,10 @@
+<h4>Answer <%= answer_counter + 1 %></h4>
+<p><%= answer.votes.count %></p>
+<p><%= answer.body %></p>
+<p>Created by: <%= answer.user.email %></p>
+<p>Created at: <%= answer.created_at.strftime("%d/%m/%Y") %></p>
+<%= render answer.comments %>
+	<% if user_signed_in? %>
+		<a class="show-comments btn btn-primary" href="">Add Comment</a>
+	   <%= render partial: 'comments/form', locals: {commentable: answer}%>
+	<% end %>

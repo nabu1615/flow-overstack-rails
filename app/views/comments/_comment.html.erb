@@ -1,0 +1,6 @@
+<div class="comment">
+	<strong>Comment <%= comment_counter + 1 %></strong>
+	<span> | <%= comment.body %></span>
+	<span> | <%= comment.user.email %></span>
+	<span> | <%= comment.created_at.strftime("%d/%m/%Y") %></span>
+</div>

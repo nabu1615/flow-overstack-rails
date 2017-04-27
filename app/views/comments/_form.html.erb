@@ -1,0 +1,11 @@
+<%= form_for [commentable, commentable.comments.new] do |f| %>
+ <div class="form-group">
+   <%= f.label :body, "Write your comment" %>
+   <%= f.text_area :body, class: 'form-control input-lg col-sm-2' %>
+   <%= f.hidden_field :commentable_type, value: commentable.class %>
+ </div>
+
+ <div class="actions text-right">
+   <%= f.submit %>
+ </div>
+<% end %>
