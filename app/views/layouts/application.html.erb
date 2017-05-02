@@ -4,11 +4,64 @@
     <title>Stack</title>
     <%= csrf_meta_tags %>
 
+    <%= favicon_link_tag 'favicon.png' %>
+
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link href="https://fonts.googleapis.com/css?family=Muli:400,700" rel="stylesheet">
+
   </head>
 
-  <body>
-    <%= yield %>
+  <body class="site">
+  	<header>
+  		<div class="container">
+        <div class="row">
+          <div class="logo col-sm-2">
+            <%= link_to "", root_path %>
+          </div>
+          <div class="search col-sm-8 text-right">
+            <%= form_tag questions_path, method: :get, class: "search" do %>
+              <div class="form-group text-right">
+                <%= text_field_tag :query, "", class: 'form-control input-search' %>
+              </div>
+              <%= submit_tag "Buscar", name: nil, class: "btn btn-primary btn-md" %>
+            <% end %> 
+          </div>
+            <div class="user-login col-sm-2 text-center">
+            <% if !user_signed_in? %>
+              <%= link_to "Log In", user_session_path, class:'btn btn-sign-up' %>
+              <% else %>
+              <div class="welcome text-right">
+                <strong>Welcome</strong>
+                <span><%= current_user.email %></span>
+                <%= link_to "Sign Out", destroy_user_session_path, :method => :delete %>
+              </div>
+            <% end %>
+            </div>
+        </div>
+  		</div>
+  	</header>
+    <% if !user_signed_in? %>
+      <div class="invite-join">
+        <div class="container">
+          <div class="text">
+            <p>It's time to code </p>
+            <span>StackUp is the largest online community for programmers to learn, share, and solve code problems.
+            Create your StackUp account. It's free and only takes a minute.</span>
+            <div class="button-wrapper">
+              <%= link_to "Sign Up",  new_user_registration_path, class: 'btn btn-sign-up' %>
+            </div>
+          </div>  
+        </div>
+      </div>
+    <% end %>
+    <div class="site-content">
+      <%= yield %>
+    </div>
+    <footer>
+      <div class="container">
+        <p class="text-center"> © 2017 Stack Up</p>
+      </div>
+    </footer>
   </body>
 </html>

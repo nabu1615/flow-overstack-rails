@@ -1,0 +1,5 @@
+<%= link_to path(votable, {votable_type: votable.class}), controller: controller, action: action, method: verb, class: 'question-info__item question-info__votes' do %>
+
+        <strong><%= votable.votes.count %></strong>
+        <span>Votes</span>
+<% end %>

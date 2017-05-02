@@ -1,0 +1,32 @@
+<div class="container home">
+	<div class="wrapper-title">
+		<div class="row">
+			<h1 class="col-xs-12 col-sm-6">Latest Questions</h1>
+			<div class="button-wrapper button--down col-sm-6">
+				<%= link_to "Ask Question", new_question_path, class: 'btn btn-primary'%>
+			</div>
+		</div>
+	</div>
+
+	<ul  class="col-xs-12 col-sm-8 home-questions">
+	<% @questions.each do |question| %>
+		<li class="home-questions__item row">
+			<div class="question-info col-xs-12 col-sm-3">
+				<%= link_to question_path(question), class: 'question-info__item question-info__answers' do %>
+					<strong><%= question.answers.count %></strong>
+					<span>Answers</span>
+				<% end %>
+				<%= link_to question_path(question), class: 'question-info__item question-info__votes' do %>
+					<strong><%= question.votes.count %></strong>
+					<span>Votes</span>
+				<% end %>
+			</div>
+			<div class="question-details col-xs-12 col-sm-9">
+				<%= link_to "#{question.title}", question_path(question), class: 'home-questions__item__title' %>
+				<span class="question-details__user">created by: <%= question.user.email %></span>
+				<span class="question-details__date">at: <%=question.created_at.strftime("%d/%m/%Y") %></span> 
+			</div>	 
+		</li>
+	<% end %>
+	</ul>	
+</div>
