@@ -1,4 +1,16 @@
 <%= form_for [commentable, commentable.comments.new] do |f| %>
+
+<% if @comment.present? && @comment.errors.present? %>
+	<div class="errors">
+		<p>In order to publish your comment, check the following errors.</p>
+		<ul>
+		<% @comment.errors.full_messages.each do |error| %>
+			<li><%= error %></li>
+		<% end %>
+		</ul>
+	</div>
+<% end %>
+
  <div class="form-group">
    <%= f.label :body, "Write your comment" %>
    <%= f.text_area :body, class: 'form-control input-lg col-sm-2' %>
@@ -6,6 +18,6 @@
  </div>
 
  <div class="actions text-right">
-   <%= f.submit %>
+   <%= f.submit class: 'comment-submit' %>
  </div>
 <% end %>

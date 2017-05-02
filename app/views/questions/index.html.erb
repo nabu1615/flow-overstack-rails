@@ -1,18 +1,3 @@
-<% if !user_signed_in? %>
-	<div class="invite-join">
-		<div class="container">
-			<div class="text">
-				<p>It's time to code </p>
-				<span>StackUp is the largest online community for programmers to learn, share, and solve code problems.
-				Create your StackUp account. It's free and only takes a minute.</span>
-				<div class="button-wrapper">
-					<%= link_to "Sign Up",  new_user_registration_path, class: 'btn btn-sign-up' %>
-				</div>
-			</div>	
-		</div>
-	</div>
-<% end %>
-
 <div class="container home">
 	<div class="wrapper-title">
 		<div class="row">
@@ -31,7 +16,6 @@
 					<strong><%= question.answers.count %></strong>
 					<span>Answers</span>
 				<% end %>
-
 				<%= link_to question_path(question), class: 'question-info__item question-info__votes' do %>
 					<strong><%= question.votes.count %></strong>
 					<span>Votes</span>

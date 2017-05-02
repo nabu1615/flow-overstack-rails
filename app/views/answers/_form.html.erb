@@ -1,4 +1,16 @@
 <%= form_for [question, question.answers.new] do |f| %>
+
+<% if @answer.present? && @answer.errors.present? %>
+	<div class="errors">
+		<p>In order to publish your answer, check the following errors.</p>
+		<ul>
+		<% @answer.errors.full_messages.each do |error| %>
+			<li><%= error %></li>
+		<% end %>
+		</ul>
+	</div>
+<% end %>
+
  <div class="form-group">
    <%= f.label :body, "Write your answer" %>
    <%= f.text_area :body, class: 'form-control input-lg col-sm-2' %>
