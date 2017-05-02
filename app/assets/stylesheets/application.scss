@@ -94,7 +94,6 @@ header {
 	@at-root &__votes {
 		border: 2px solid #2571A2;
 		color: #2571A2;
-		cursor: pointer;
 		&:hover {
 			border: 2px solid $orange;
 			color: $orange;
@@ -166,12 +165,16 @@ header {
 	padding: 10px 0;
 	border-radius: 10px;
 	margin-bottom: 5px;
-	padding-left: 60px;
+	padding-left: 20px;
 	background-color: $grayLight;
 }
 
-.a-log-in {
-	
+.new_question {
+	margin-top: 30px;
+	.form-group {
+		display: inline-block;
+		width: 100%;
+	}
 }
 
 .log-wrapper {
@@ -239,4 +242,97 @@ header {
 
 .show-comments {
 	font-size: 12px;
+}
+
+
+.search {
+	position: relative;
+	.input-search {
+		float: right;
+		position: relative;
+		right: 48px;
+		width: 300px;
+		height: 40px;
+	}
+
+	.btn {
+		position: absolute;
+		right: 0;
+		height: 40px;
+	}
+}
+
+
+.user-login {
+	.btn {
+		top: 15px;
+	}
+}
+
+.site, html {
+	height: 100%;
+	margin: 0;
+}
+
+.site-content {
+   min-height: 100%;
+   margin-bottom: 70px;
+}
+
+footer {
+	display: inline-block;
+	height: 50px;
+	width: 100%;
+    border-top: 2px solid rgb(239, 80, 40);
+}
+
+footer .container {
+	position: relative;
+	top: 15px;
+}
+
+.question-form {
+	margin-top: 40px;
+}
+
+.welcome {
+	padding-top: 10px;
+}
+
+.errors {
+	border: 1px solid red;
+	border-radius: 10px;
+	padding: 15px;
+	margin-bottom: 20px;
+	ul li {
+		list-style-type: circle;
+	}
+}
+
+.question-user__votes {
+	position: relative;
+	padding: 30px 0;
+	.up, .down {
+		position: absolute;
+		font-size: 0;
+		width: 30px;
+		height: 20px;
+		background-size: 100%;
+	}
+
+	.up {
+		top: 0;
+		left: 20px;
+		background-image: url('up.png')
+	}
+
+	.down {
+		bottom: 5px;
+		left: 20px;
+		background-image: url('down.png')
+	}
+}
+
+.votes-error {
+	display: inline-block;
 }

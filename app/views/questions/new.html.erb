@@ -1,2 +1,31 @@
-<h1>Questions#new</h1>
-<p>Find me in app/views/questions/new.html.erb</p>
+<div class="container question-form">
+
+	<% if @question.errors.present?  %>
+		<div class="errors">
+			<p>In order to publish your answer, check the following errors.</p>
+			<ul>
+			<% @question.errors.full_messages.each do |error| %>
+				<li><%= error %></li>
+			<% end %>
+			</ul>
+		</div>
+	<% end %>
+		
+	<p>Thanks for your help</p>
+	<p>In the following form you can add a new answer for this question</p>
+
+	<%= form_for @question do |f| %>
+	 <div class="form-group">
+	 	<%= f.label :title, "Title" %>
+	 	<%= f.text_field :title, class: 'form-control input-lg col-sm-2' %>
+	</div>
+	 <div class="form-group">
+	 	<%= f.label :body, "Write your Question" %>
+	 	<%= f.text_area :body, class: 'form-control input-lg col-sm-2' %>
+	 </div>
+
+	 <div class="actions text-right">
+	   <%= f.submit "Post your Question", class:"btn btn-sign-up"  %>
+	 </div>
+	<% end %>	
+</div>

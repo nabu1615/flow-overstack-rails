@@ -2,10 +2,11 @@ class CommentsController < ApplicationController
   def create
 	@comment = Comment.new(comment_params)
 	@comment.user_id = current_user.id
+  @question = Question.find(params[:question_id])
   	if @comment.save
-  		redirect_to root_path
-  	else
-  		render plain: @comment.errors.full_messages
+  		redirect_to @question
+    else
+      render 'questions/show'
   	end
   end
 

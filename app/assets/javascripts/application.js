@@ -17,8 +17,12 @@
 
 
 $(document).ready(function () {
-	$('.show-comments').on('click', function (event) {
+	$('.question-detail').on('click', '.show-comments', function (event) {
 		event.preventDefault();
 		$(this).next('.new_comment').slideToggle();
+	});
+
+	$('.question-user__votes a').on('click', function (e) {
+		e.preventDefault();
 	});
 });

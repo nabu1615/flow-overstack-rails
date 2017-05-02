@@ -1,3 +1,5 @@
 class ApplicationController < ActionController::Base
-  protect_from_forgery with: :exception
+  def setMarkDown
+	@markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, autolink: true, no_styles: true)
+  end
 end

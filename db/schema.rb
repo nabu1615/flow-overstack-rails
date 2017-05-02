@@ -37,7 +37,6 @@ ActiveRecord::Schema.define(version: 20170426005017) do
   create_table "questions", force: :cascade do |t|
     t.string   "title"
     t.text     "body"
-    t.date     "date"
     t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -62,12 +61,13 @@ ActiveRecord::Schema.define(version: 20170426005017) do
   end
 
   create_table "votes", force: :cascade do |t|
-    t.integer  "votable_id"
-    t.string   "votable_type"
+    t.boolean  "vote"
     t.integer  "user_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-    t.index ["user_id"], name: "index_votes_on_user_id", using: :btree
+    t.string   "voteable_type"
+    t.integer  "voteable_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.index ["voteable_type", "voteable_id"], name: "index_votes_on_voteable_type_and_voteable_id", using: :btree
   end
 
 end

@@ -1,9 +1,9 @@
 class CreateVotes < ActiveRecord::Migration[5.0]
   def change
-    create_table :votes do |t|
-    	t.integer :votable_id
-      	t.string  :votable_type
-      	t.references :user, index: true
+  	create_table :votes do |t|
+      t.boolean :vote
+      t.integer :user_id
+      t.references :voteable, polymorphic: true
       t.timestamps
     end
   end

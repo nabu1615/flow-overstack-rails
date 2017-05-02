@@ -1,13 +1,26 @@
 Rails.application.routes.draw do
+  get 'votes/create'
+
   get 'comments/create'
+
 
   resources :questions do
   	resources :answers
     resources :comments
+    
+    member do
+      post 'vote'
+    end
+
   end
 
   resources :answers do
   	resources :comments
+
+    member do
+      post 'vote'
+      delete 'vote'
+    end
   end
 
   devise_for :users

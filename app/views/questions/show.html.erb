@@ -6,28 +6,59 @@
 	<p><%= @question.body %></p>
 	<div class="row question-user">
 		<div class="col-xs-12 col-sm-9 question-user__votes">
-			<%= link_to question_path(@question), class: 'question-info__item question-info__votes' do %>
+			<% if user_signed_in? %>
+				<%= link_to vote_question_path(@question, vote: true, user_id: current_user.id), method: 'post' do %>
+			      <i class='up'>up</i>
+			    <%end %>
+		    <%end %>
+
+			<div class="question-info__item question-info__votes" href="/questions/14">
 				<strong><%= @question.votes.count %></strong>
 				<span>Votes</span>
+			</div>
+			
+			<% if user_signed_in? %>
+			    <%= link_to vote_question_path(@question, vote: false, user_id: current_user.id), method: 'post' do %>
+			      <i class='down'>down</i>
+			    <%end %>
 			<% end %>
+			
+			<% if @vote_errors %>
+				<p class="votes-error">No puedes votar dos veces lá misma pregunta </p>
+		    <% end %>
+
+		    <% if @destroy_message %>
+				<p class="votes-error"><%= @destroy_message %></p>
+		    <% end %>
+
 		</div>
 		<div class="col-xs-12 col-sm-3 question-user__info">
 			<span><strong>User:</strong> <%= @question.user.email %></span>
 			<span><strong>At:</strong> <%= @question.created_at.strftime("%d/%m/%Y") %></span>
 		</div>
 	</div>
+
 	<div class="question-user__comments">
 		<%= render @question.comments %>
 	</div>
 	<% if user_signed_in? %>
 		<a class="show-comments" href="">Add a Comment</a>
 		<%= render partial: 'comments/form', locals: {commentable: @question}%>
+	   <% else %>
+    	<%= link_to "Add Comment",  user_session_path %>
 	<% end %>
 	<div class="answers">
-	   <%= render @question.answers %>
-	<% if user_signed_in? %>
-	   <%= render partial: 'answers/form', locals: {question: @question}%>
-	<% end %>
+		<%= render @question.answers %>
+		<% if user_signed_in? %>
+		   <%= render partial: 'answers/form', locals: {question: @question}%>
+		<% end %>
+		<% if !user_signed_in? %>
+			<p>Do you want to share your answers?</p>
+            <div class="button-wrapper">
+              <%= link_to "Sign Up",  new_user_registration_path, class: 'btn btn-sign-up' %>
+			<%= link_to "Log In", user_session_path, class:'btn btn-sign-up' %>
+            </div>
+		<% end %>
 	</div>
 	
 </div>
