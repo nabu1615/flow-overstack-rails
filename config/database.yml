@@ -80,6 +80,7 @@ test:
 #
 production:
   <<: *default
+  adapter: postgresql
   database: stack_production
   username: stack
   password: <%= ENV['STACK_DATABASE_PASSWORD'] %>
