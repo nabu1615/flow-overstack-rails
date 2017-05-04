@@ -84,3 +84,4 @@ production:
   database: stack_production
   username: stack
   password: <%= ENV['STACK_DATABASE_PASSWORD'] %>
+  url: <%= ENV['DATABASE_URL'] %>
